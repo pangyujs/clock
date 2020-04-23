@@ -1,0 +1,16 @@
+#SignUp{
+  max-width: 400px;
+  padding: 50px 0;
+  margin: auto;
+}
+#SignUp > h1{
+  text-align: center;
+}
+
+#SignUp > *{
+  margin: 10px 0;
+}
+
+#SignUp > .SignUpButton{
+  width: 100%;
+}
