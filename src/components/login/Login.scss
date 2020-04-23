@@ -1,16 +1,20 @@
-#Login{
+#Login {
   max-width: 400px;
   padding: 50px 0;
   margin: auto;
-}
-#Login > h1{
+
+> h1 {
   text-align: center;
 }
 
-#Login > *{
+> * {
   margin: 10px 0;
 }
 
-#Login > .LoginButton{
+> .LoginButton {
   width: 100%;
 }
+
+}
+
+

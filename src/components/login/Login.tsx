@@ -4,7 +4,7 @@ import {Input, Button} from 'antd';
 import {UserOutlined, MoreOutlined} from '@ant-design/icons';
 import {Link} from 'react-router-dom';
 
-import './Login.css';
+import './Login.scss';
 
 interface ILoginState {
   account: string,
