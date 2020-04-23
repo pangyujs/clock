@@ -1,7 +1,7 @@
 import axios from '../../config/axios';
 import * as React from 'react';
 import {Input, Button} from 'antd';
-import {UserOutlined,NumberOutlined } from '@ant-design/icons';
+import {UserOutlined, MoreOutlined } from '@ant-design/icons';
 import {Link} from 'react-router-dom';
 
 import './SignUp.css';
@@ -42,7 +42,7 @@ class SignUp extends React.Component<any, ISignUpState> {
         account,
         password
       });
-      console.log('成功');
+      this.props.history.push('/');
     } catch (e) {
       throw new Error(e);
     }
@@ -60,10 +60,10 @@ class SignUp extends React.Component<any, ISignUpState> {
           onChange={this.onChangeAccount}
         />
         <Input.Password
-          prefix={<NumberOutlined className="site-form-item-icon" style={{color: 'rgba(0,0,0,.25)'}}/>}
+          prefix={<MoreOutlined className="site-form-item-icon" style={{color: 'rgba(0,0,0,.25)'}}/>}
           value={password} onChange={this.onChangePassword} placeholder="请输入密码"/>
         <Input.Password
-          prefix={<NumberOutlined className="site-form-item-icon" style={{color: 'rgba(0,0,0,.25)'}}/>}
+          prefix={<MoreOutlined className="site-form-item-icon" style={{color: 'rgba(0,0,0,.25)'}}/>}
           value={passwordConfirmation} onChange={this.onChangePasswordConfirmation} placeholder="请确认密码"/>
         <Button className="SignUpButton" onClick={this.submit} type={'primary'}>注册</Button>
         <p>如果你有账号,请立即<Link to={'/login'}>登录</Link></p>
