@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import history from './history';
 
 const appID = '1sWsH7UDDDZazp57zzUaQgoH';
 const appSecret = 'HLXMzJHYAaPqQ1ipSJQFLfPh';
@@ -24,7 +24,7 @@ instance.interceptors.request.use(function (config) {
   return Promise.reject(error);
 });
 
-// Add a response interceptor
+// Add a response interceptor 拦截器
 instance.interceptors.response.use(function (response) {
   // Do something with response data
   if (response.headers['x-token']) {
@@ -33,6 +33,9 @@ instance.interceptors.response.use(function (response) {
   return response;
 }, function (error) {
   // Do something with response error
+  if (error.response.status === 401) {
+    history.push('/login');
+  }
   return Promise.reject(error);
 });
 

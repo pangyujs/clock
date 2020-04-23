@@ -1,26 +1,45 @@
 import * as React from 'react';
 import {Button} from 'antd';
+import axios from '../../config/axios';
 
-class Component extends React.Component<any> {
-  constructor(props:any) {
+interface IIndexState {
+  user: any
+}
+
+class Index extends React.Component<any, IIndexState> {
+  constructor(props: any) {
     super(props);
+    this.state = {
+      user: {}
+    };
   }
 
-  login = () => {
-    this.props.history.push('/login')
+  logout = () => {
+    localStorage.setItem('x-token','');
+    this.props.history.push('/login');
   };
 
-  signup = () => {
-    this.props.history.push('/signup')
+  async componentWillMount() {
+    await this.getMe();
+  }
+
+  getMe = async () => {
+    try {
+      const response = await axios.get('me');
+      this.setState({user: response.data});
+    } catch (e) {
+      console.error('获取用户失败');
+    }
   };
+
   render() {
     return (
       <div className="Component">
-        <Button onClick={this.login}>登录</Button>
-        <Button onClick={this.signup}>注册</Button>
+        <p>欢迎 {this.state.user && this.state.user.account}</p>
+        <Button onClick={this.logout}>退出登录</Button>
       </div>
     );
   }
 }
 
-export default Component;
+export default Index;
