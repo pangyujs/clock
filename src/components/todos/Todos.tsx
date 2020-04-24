@@ -20,7 +20,6 @@ class Todos extends React.Component<any, TTodosState> {
     const {todos} = this.state;
     try {
       const response = await axios.post('todos', todoData);
-      console.log(response);
       this.setState({todos: [response.data.resource, ...todos]});
     } catch (e) {
       throw new Error(e);
@@ -34,18 +33,17 @@ class Todos extends React.Component<any, TTodosState> {
   getTodos = async () => {
     try {
       const response = await axios.get('todos');
-      this.setState({todos: response.data.resources});
+      const todos = response.data.resources.map((todo: any) => Object.assign({}, todo, {editing: false}));
+      this.setState({todos});
     } catch (e) {
       throw new Error(e);
     }
   };
 
   updateTodo = async (id: number, todoData: any) => {
-    console.log(todoData);
     const {todos} = this.state;
     try {
       const response = await axios.put(`todos/${id}`, todoData);
-      console.log(response);
       const newTodo = todos.map(todo => {
         if (todo.id === id) {
           return response.data.resource;
@@ -57,10 +55,20 @@ class Todos extends React.Component<any, TTodosState> {
     } catch (e) {
       throw new Error(e);
     }
-
-
   };
 
+
+  toEditing = (id: number) => {
+    const {todos} = this.state;
+    const newTodos = todos.map(todo => {
+      if (id === todo.id) {
+        return Object.assign({}, todo, {editing: true});
+      } else {
+        return Object.assign({}, todo, {editing: false});
+      }
+    });
+    this.setState({todos: newTodos});
+  };
 
   render() {
     return (
@@ -68,7 +76,11 @@ class Todos extends React.Component<any, TTodosState> {
         <TodosInput addTodo={(todoData: any) => this.addTodo(todoData)}/>
         <main>
           {
-            this.state.todos.map(todo => <TodosItem key={todo.id} {...todo} update={this.updateTodo}/>)
+            this.state.todos.map(todo =>
+              <TodosItem key={todo.id}
+                         {...todo}
+                         toEditing={this.toEditing}
+                         update={this.updateTodo}/>)
           }
         </main>
       </div>
