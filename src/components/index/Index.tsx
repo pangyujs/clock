@@ -24,12 +24,8 @@ class Index extends React.Component<any, IIndexState> {
   }
 
   getMe = async () => {
-    try {
       const response = await axios.get('me');
       this.setState({user: response.data});
-    } catch (e) {
-      console.error('获取用户失败');
-    }
   };
 
   render() {
