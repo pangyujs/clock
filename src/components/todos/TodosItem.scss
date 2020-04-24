@@ -1,0 +1,11 @@
+#TodosItem{
+  display: flex;
+  align-items: center;
+  .editing{
+    display: flex;
+    align-content: center;
+    .todo-item-icon{
+      display: inline-block;
+    }
+  }
+}

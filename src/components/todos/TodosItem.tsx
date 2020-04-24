@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Checkbox} from 'antd';
+import {Checkbox, Input} from 'antd';
 import {DeleteOutlined, CheckOutlined} from '@ant-design/icons';
-
+import './TodosItem.scss'
 interface TTodosItemProps {
   id: number
   description: string
@@ -44,14 +44,15 @@ class TodosItem extends React.Component<TTodosItemProps, TTodosItemState> {
 
   render() {
     const Editing = (
-      <div>
-        <input value={this.state.editText}
+      <div className="editing">
+        <Input value={this.state.editText}
                onKeyUp={this.onKeyup}
-               onChange={e => this.setState({editText: e.target.value})}/>
-        <div className="icon-wrapper">
-          <CheckOutlined onClick={this.onClick}/>
-          <DeleteOutlined onClick={e => this.update({deleted: true})}/>
-        </div>
+               onChange={e => this.setState({editText: e.target.value})}
+        />
+        <span className="icon-wrapper">
+          <CheckOutlined className="todo-item-icon"onClick={this.onClick}/>
+          <DeleteOutlined className="todo-item-icon" onClick={e => this.update({deleted: true})}/>
+        </span>
       </div>
     );
 
