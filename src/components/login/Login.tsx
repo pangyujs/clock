@@ -25,11 +25,9 @@ class Login extends React.Component<any, ILoginState> {
     const newState = {};
     // @ts-ignore
     newState[key] = value;
-    console.log(newState);
     this.setState(newState);
   };
   submit = async () => {
-    console.log('提交');
     const {account, password} = this.state;
     try {
       await axios.post('sign_in/user', {

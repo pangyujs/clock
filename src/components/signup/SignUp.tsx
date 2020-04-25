@@ -34,7 +34,6 @@ class SignUp extends React.Component<any, ISignUpState> {
     this.setState({passwordConfirmation: e.target.value});
   };
   submit = async () => {
-    console.log('提交');
     const {account, password, passwordConfirmation} = this.state;
     try {
       await axios.post('sign_up/user', {

@@ -30,6 +30,7 @@ class TodosInput extends React.Component<TTodosInputProps, TTodosInputState> {
   postTodo = async () => {
     try {
       const response = await axios.post('todos',{description: this.state.description});
+      console.log(response);
       this.props.addTodo(response.data.resource)
     } catch (e) {
       throw new Error(e);
