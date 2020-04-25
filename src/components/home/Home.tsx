@@ -3,7 +3,7 @@ import {Button, Dropdown, Menu} from 'antd';
 import {UserOutlined,DownOutlined } from '@ant-design/icons';
 import axios from '../../config/axios';
 import history from '../../config/history';
-import './Index.scss'
+import './Home.scss'
 import Todos from '../todos/Todos'
 
 interface IIndexState {
@@ -28,7 +28,7 @@ const menu = (
   </Menu>
 );
 
-class Index extends React.Component<any, IIndexState> {
+class Home extends React.Component<any, IIndexState> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -67,4 +67,4 @@ class Index extends React.Component<any, IIndexState> {
   }
 }
 
-export default Index;
+export default Home;

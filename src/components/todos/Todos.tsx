@@ -2,7 +2,9 @@ import * as React from 'react';
 import TodosInput from './TodosInput';
 import axios from '../../config/axios';
 import './Todos.scss';
+import {connect} from 'react-redux';
 import TodosItem from './TodosItem';
+import {addTodo} from '../../redux/actions';
 
 interface TTodosState {
   todos: any[]
@@ -29,15 +31,19 @@ class Todos extends React.Component<any, TTodosState> {
   componentDidMount() {
     this.getTodos();
   }
-  get onDeletedTodos(){
-    return this.state.todos.filter(todo => !todo.deleted)
+
+  get onDeletedTodos() {
+    return this.state.todos.filter(todo => !todo.deleted);
   }
-  get onCompletedTodos(){
-    return this.onDeletedTodos.filter(todo => !todo.completed)
+
+  get onCompletedTodos() {
+    return this.onDeletedTodos.filter(todo => !todo.completed);
   }
-  get completedTodos(){
-    return this.state.todos.filter(todo => todo.completed)
+
+  get completedTodos() {
+    return this.state.todos.filter(todo => todo.completed);
   }
+
   getTodos = async () => {
     try {
       const response = await axios.get('todos');
@@ -77,13 +83,14 @@ class Todos extends React.Component<any, TTodosState> {
     });
     this.setState({todos: newTodos});
   };
+
   render() {
-    console.log(this.state.todos)
-    console.log(this.onDeletedTodos)
-    console.log(this.onCompletedTodos)
+    console.log(this.state.todos);
+    console.log(this.onDeletedTodos);
+    console.log(this.onCompletedTodos);
     return (
       <div className="Todos" id="Todos">
-        <TodosInput addTodo={(todoData: any) => this.addTodo(todoData)}/>
+        <TodosInput/>
         <div className="todoList">
           {
             this.onCompletedTodos.map(todo =>
@@ -105,4 +112,12 @@ class Todos extends React.Component<any, TTodosState> {
   }
 }
 
-export default Todos;
+const mapStateToProps = (state: any, ownProps: any) => ({
+  todos: state.todos,
+  ...ownProps
+});
+const mapDispatchToProps = {
+  addTodo
+}
+
+export default connect(mapStateToProps)(Todos);
