@@ -3,7 +3,7 @@ import {Checkbox} from 'antd';
 import {DeleteOutlined, CheckOutlined} from '@ant-design/icons';
 import './TodosItem.scss';
 import {connect} from 'react-redux';
-import {editTodo, updateTodo} from '../../redux/actions/actions';
+import {editTodo, updateTodo} from '../../redux/actions/todos';
 
 // @ts-ignore
 import classNames from 'classnames';
