@@ -3,7 +3,7 @@ import {Input} from 'antd';
 import {EnterOutlined} from '@ant-design/icons';
 import axios from '../../config/axios';
 import {connect} from 'react-redux';
-import {addTodo} from '../../redux/actions';
+import {addTodo} from '../../redux/actions/actions';
 
 interface TTodosInputState {
   description: string

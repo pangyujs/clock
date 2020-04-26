@@ -5,6 +5,7 @@ import axios from '../../config/axios';
 import history from '../../config/history';
 import './Home.scss'
 import Todos from '../todos/Todos'
+import Tomatoes from '../Tomatoes/Tomatoes';
 
 interface IIndexState {
   user: any
@@ -61,6 +62,7 @@ class Home extends React.Component<any, IIndexState> {
         </header>
         <main>
           <Todos/>
+          <Tomatoes/>
         </main>
       </div>
     );

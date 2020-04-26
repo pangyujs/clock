@@ -4,13 +4,8 @@ import axios from '../../config/axios';
 import './Todos.scss';
 import {connect} from 'react-redux';
 import TodosItem from './TodosItem';
-import {initTodos} from '../../redux/actions';
-
+import {initTodos} from '../../redux/actions/actions';
 class Todos extends React.Component<any> {
-  constructor(props: any) {
-    super(props);
-  }
-
   componentDidMount() {
     this.getTodos();
   }
