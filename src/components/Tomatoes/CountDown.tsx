@@ -23,9 +23,9 @@ class CountDown extends React.Component<TCountDownProps, TCountDownState> {
 
   componentDidMount(): void {
     timeID = setInterval(() => {
-      document.title = `${this.countDown} - 土豆烧牛肉`;
       const time = this.state.countDown;
       this.setState({countDown: time - 1000});
+      document.title = `${this.countDown} - 土豆烧牛肉`;
       if (time < 1000) {
         document.title = `土豆烧牛肉`;
         this.props.onFinish();

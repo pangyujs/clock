@@ -4,10 +4,10 @@ import axios from '../../config/axios';
 import CountDown from './CountDown';
 import {CloseCircleOutlined} from '@ant-design/icons';
 import './TomatoAction.scss';
-import { Modal} from 'antd';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import {Modal} from 'antd';
+import {ExclamationCircleOutlined} from '@ant-design/icons';
 
-const { confirm } = Modal;
+const {confirm} = Modal;
 
 interface TTomatoActionProps {
   tomatoStart: () => void
@@ -30,14 +30,14 @@ class TomatoAction extends React.Component<TTomatoActionProps, TTomatoActionStat
 
   showConfirm = () => {
     confirm({
-      title: '你正在进行一项任务, 确定取消?',
-      icon: <ExclamationCircleOutlined />,
+      title: '你正在烧特别香的牛肉, 你忍心取消?',
+      icon: <ExclamationCircleOutlined/>,
       onOk: () => {
-        this.abortTomato()
+        this.abortTomato();
       },
       onCancel() {},
       okText: '确定',
-      cancelText:'取消'
+      cancelText: '取消'
     });
   };
 
@@ -52,8 +52,8 @@ class TomatoAction extends React.Component<TTomatoActionProps, TTomatoActionStat
   };
 
   abortTomato = () => {
+    document.title = '土豆烧牛肉';
     this.updateTomato({aborted: true});
-    document.title = '土豆烧牛肉'
   };
   onKeyUp = (e: any) => {
     if (e.keyCode === 13 && this.state.description !== '') {
@@ -71,7 +71,7 @@ class TomatoAction extends React.Component<TTomatoActionProps, TTomatoActionStat
     if (this.props.unfinishedTomato === undefined) {
       html = <div className="button-wrapper">
         <Button onClick={() => this.props.tomatoStart()}>开始烧牛肉</Button>
-      </div>
+      </div>;
     } else {
       const startAt = Date.parse(this.props.unfinishedTomato.started_at);
       const duration = this.props.unfinishedTomato.duration;

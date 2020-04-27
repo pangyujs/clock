@@ -4,23 +4,37 @@ import TomatoAction from './TomatoAction';
 import {connect} from 'react-redux';
 import {addTomato, initTomatoes, updateTomato} from '../../redux/actions/tomatoes';
 import axios from '../../config/axios';
+import TomatoList from './TomatoList';
+// @ts-ignore
+import _ from 'lodash';
+import {format,parseISO} from 'date-fns';
 
 interface TTomatoes {
   addTomato: (payload: Object) => Object
   tomatoes: any[]
-  initTomatoes: (payload:any) => any
-  updateTomato: (payload:any) => any
+  initTomatoes: (payload: any) => any
+  updateTomato: (payload: any) => any
 }
 
 class Tomatoes extends React.Component<TTomatoes> {
 
-  componentDidMount(){
+  componentDidMount() {
     this.getTomatoes();
   }
 
   get unfinishedTomato() {
-    return this.props.tomatoes.filter(tomato => !tomato.decription && !tomato.ended_at && !tomato.aborted)[0];
+    return this.props.tomatoes.filter(tomato => !tomato.description && !tomato.ended_at && !tomato.aborted)[0];
   }
+
+  get finishedTomato() {
+    const finishTomatoes = this.props.tomatoes.filter(tomato => tomato.description && tomato.ended_at && !tomato.aborted);
+    const tomatoDate = _.groupBy(finishTomatoes, (tomato:any) => {
+        return format(parseISO(tomato.started_at), 'yyyy-MM-d');
+      }
+    );
+    return tomatoDate;
+  }
+
 
   getTomatoes = async () => {
     try {
@@ -47,7 +61,7 @@ class Tomatoes extends React.Component<TTomatoes> {
                       unfinishedTomato={this.unfinishedTomato}
 
         />
-
+        <TomatoList finishedTomatoes={this.finishedTomato}/>
       </div>
     );
   }

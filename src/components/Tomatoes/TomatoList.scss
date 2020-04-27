@@ -1,0 +1,16 @@
+#TomatoList{
+  margin-top: 16px;
+  .TomatoItem{
+    padding: 4px 4px;
+    >span:first-child{
+      padding-right: 16px;
+    }
+  }
+  .title{
+    display: flex;
+    padding: 8px 4px;
+    justify-content: space-between;
+    border-bottom: 1px solid #dddddd;
+    border-top: 1px solid #dddddd;
+  }
+}
