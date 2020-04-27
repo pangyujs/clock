@@ -1,8 +1,7 @@
 import React from 'react';
 import {Button, Input} from 'antd';
 import axios from '../../config/axios';
-import CountDown from './CountDown';
-import {start} from 'repl';
+import CountDown from './CountDownHook';
 
 interface TTomatoActionProps {
   tomatoStart: () => void
@@ -41,6 +40,10 @@ class TomatoAction extends React.Component<TTomatoActionProps, TTomatoActionStat
     }
   };
 
+  onFinish = () => {
+    this.render();
+  };
+
   render() {
     let html = <div/>;
     if (this.props.unfinishedTomato === undefined) {
@@ -58,8 +61,8 @@ class TomatoAction extends React.Component<TTomatoActionProps, TTomatoActionStat
           />
         </div>;
       } else if (timeNow - startAt < duration) {
-        const timer = duration - (timeNow - startAt);
-        html = <CountDown timer={timer}/>;
+        const timer = duration - timeNow + startAt;
+        html = <CountDown timer={timer} onFinish={this.onFinish}/>;
       }
     }
     return (

@@ -3,12 +3,14 @@ import * as React from 'react';
 
 interface TCountDownProps {
   timer: number
+  onFinish: () => any
 }
 
 interface TCountDownState {
   countDown: number
 }
 
+let timeID:any = null;
 class CountDown extends React.Component<TCountDownProps, TCountDownState> {
   constructor(props: any) {
     super(props);
@@ -18,14 +20,19 @@ class CountDown extends React.Component<TCountDownProps, TCountDownState> {
   }
 
   componentDidMount(): void {
-    setInterval(() => {
+    timeID = setInterval(() => {
       const time = this.state.countDown;
       this.setState({countDown: time - 1000});
       if(time < 0){
-        // 告诉父组件可以停止了
+        this.props.onFinish();
+        clearInterval(timeID)
       }
 
     }, 1000);
+  }
+
+  componentWillUnmount(): void {
+    clearInterval(timeID)
   }
 
   render() {
