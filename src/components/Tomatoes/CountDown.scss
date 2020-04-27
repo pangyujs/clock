@@ -1,0 +1,14 @@
+#CountDown{
+  text-align: center;
+  padding: 4px 0;
+  border-radius: 4px;
+  border: 1px solid #dddddd;
+  >.progress{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #dddddd;
+    box-shadow: 1px 0 0 0 rgba(255,255,255,1);
+  }
+}

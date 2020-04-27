@@ -1,7 +1,13 @@
 import React from 'react';
 import {Button, Input} from 'antd';
 import axios from '../../config/axios';
-import CountDown from './CountDownHook';
+import CountDown from './CountDown';
+import {CloseCircleOutlined} from '@ant-design/icons';
+import './TomatoAction.scss';
+import { Modal} from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+
+const { confirm } = Modal;
 
 interface TTomatoActionProps {
   tomatoStart: () => void
@@ -21,48 +27,70 @@ class TomatoAction extends React.Component<TTomatoActionProps, TTomatoActionStat
     };
   }
 
-  addDescription = async () => {
+
+  showConfirm = () => {
+    confirm({
+      title: '你正在进行一项任务, 确定取消?',
+      icon: <ExclamationCircleOutlined />,
+      onOk: () => {
+        this.abortTomato()
+      },
+      onCancel() {},
+      okText: '确定',
+      cancelText:'取消'
+    });
+  };
+
+
+  updateTomato = async (tomatoData: any) => {
     try {
-      const response = await axios.put(`tomatoes/${this.props.unfinishedTomato.id}`, {
-        description: this.state.description,
-        ended_at: new Date()
-      });
+      const response = await axios.put(`tomatoes/${this.props.unfinishedTomato.id}`, tomatoData);
       this.props.updateTomato(response.data.resource);
-      this.setState({description: ''});
     } catch (e) {
       throw new Error(e);
     }
   };
 
+  abortTomato = () => {
+    this.updateTomato({aborted: true});
+    document.title = '土豆烧牛肉'
+  };
   onKeyUp = (e: any) => {
     if (e.keyCode === 13 && this.state.description !== '') {
-      this.addDescription();
+      this.updateTomato({description: this.state.description, ended_at: new Date()});
+      this.setState({description: ''});
     }
   };
 
   onFinish = () => {
-    this.render();
+    this.forceUpdate();
   };
 
   render() {
     let html = <div/>;
     if (this.props.unfinishedTomato === undefined) {
-      html = <Button onClick={() => this.props.tomatoStart()}>开始番茄</Button>;
+      html = <div className="button-wrapper">
+        <Button onClick={() => this.props.tomatoStart()}>开始烧牛肉</Button>
+      </div>
     } else {
       const startAt = Date.parse(this.props.unfinishedTomato.started_at);
       const duration = this.props.unfinishedTomato.duration;
       const timeNow = new Date().getTime();
       if (timeNow - startAt > duration) {
-        html = <div>
+        html = <div className="input-wrapper">
           <Input value={this.state.description}
                  onChange={(e) => this.setState({description: e.target.value})}
                  onKeyUp={this.onKeyUp}
                  placeholder="请输入刚刚完成的任务"
           />
+          <CloseCircleOutlined className="closeIcon" onClick={this.showConfirm}/>
         </div>;
       } else if (timeNow - startAt < duration) {
         const timer = duration - timeNow + startAt;
-        html = <CountDown timer={timer} onFinish={this.onFinish}/>;
+        html = <div className="countDown-wrapper">
+          <CountDown timer={timer} onFinish={this.onFinish} duration={duration}/>
+          <CloseCircleOutlined className="closeIcon" onClick={this.showConfirm}/>
+        </div>;
       }
     }
     return (
