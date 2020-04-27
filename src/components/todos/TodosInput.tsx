@@ -46,7 +46,7 @@ class TodosInput extends React.Component<TTodosInputProps, TTodosInputState> {
       <div className="TodosInput" id="TodosInput">
         <Input
           suffix={suffix}
-          value={description} placeholder="输入你要做的事情"
+          value={description} placeholder="输入你要烧什么牛肉"
           onChange={(e) => this.setState({description: e.target.value})}
           onKeyUp={this.onKeyup}
         />

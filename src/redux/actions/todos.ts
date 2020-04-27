@@ -25,9 +25,3 @@ export const editTodo = (payload: number) => {
     payload
   };
 };
-export const addTomato = (payload:number) => {
-  return {
-    type: ADD_TOMATO,
-    payload
-  };
-};

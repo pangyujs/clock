@@ -19,7 +19,7 @@ class Todos extends React.Component<any> {
   }
 
   get completedTodos() {
-    return this.props.todos.filter((todo:any) => todo.completed);
+    return this.onDeletedTodos.filter((todo:any) => todo.completed);
   }
 
   getTodos = async () => {

@@ -56,6 +56,7 @@ class TodosItem extends React.Component<TTodosItemProps, TTodosItemState> {
   };
 
   render() {
+    console.log(this.props);
     const Editing = (
       <div className="editing">
         <input value={this.state.editText}
@@ -63,7 +64,9 @@ class TodosItem extends React.Component<TTodosItemProps, TTodosItemState> {
                onChange={e => this.setState({editText: e.target.value})}
         />
         <span className="icon-wrapper">
-          <CheckOutlined className="successIcon" onClick={this.onClick}/>
+          {
+            !this.props.completed ? <CheckOutlined className="successIcon" onClick={this.onClick}/> : <span className="successIcon"/>
+          }
           <DeleteOutlined className="deleteIcon" onClick={e => this.updateTodo({deleted: true})}/>
         </span>
       </div>

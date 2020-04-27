@@ -52,10 +52,10 @@ class Home extends React.Component<any, IIndexState> {
     return (
       <div className="Index" id="Index">
         <header>
-          <span className="logo">LOGO</span>
+          <h2 className="logo"><strong >土豆烧牛肉</strong></h2>
           <Dropdown overlay={menu}>
             <Button className="userButton">
-              <span>欢迎 {this.state.user && this.state.user.account}</span>
+              <span><strong>欢迎 {this.state.user && this.state.user.account}</strong></span>
               <DownOutlined className="userIcon" />
             </Button>
           </Dropdown>
