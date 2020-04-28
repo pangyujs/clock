@@ -16,9 +16,7 @@ const TomatoItem = (props:any) => {
 
 class TomatoList extends React.Component<TTomatoListProps> {
 
-  componentDidMount(): void {
-    console.log(this.props.finishedTomatoes);
-  }
+
 
   get dates() {
     const dates = Object.keys(this.props.finishedTomatoes);
@@ -28,7 +26,6 @@ class TomatoList extends React.Component<TTomatoListProps> {
   render() {
     const list = this.dates.map(date => {
       const tomatoes = this.props.finishedTomatoes[date];
-      console.log(tomatoes);
       return (
         <div key={date}>
           <div className="title">
