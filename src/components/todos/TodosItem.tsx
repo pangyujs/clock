@@ -66,10 +66,7 @@ class TodosItem extends React.Component<TTodosItemProps, TTodosItemState> {
                onChange={e => this.setState({editText: e.target.value})}
         />
         <span className="icon-wrapper">
-          {
-            !this.props.completed ? <CheckOutlined className="successIcon" onClick={this.onClick}/> :
-              <span className="successIcon"/>
-          }
+             <CheckOutlined className="successIcon" onClick={this.onClick}/>
           <DeleteOutlined className="deleteIcon" onClick={e => this.updateTodo({deleted: true})}/>
         </span>
       </div>

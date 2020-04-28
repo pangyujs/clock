@@ -1,14 +1,10 @@
 import * as React from 'react';
 import TodosInput from './TodosInput';
-import axios from '../../config/axios';
 import './Todos.scss';
 import {connect} from 'react-redux';
 import TodosItem from './TodosItem';
 import {initTodos} from '../../redux/actions/todos';
 class Todos extends React.Component<any> {
-  componentDidMount() {
-    this.getTodos();
-  }
 
   get onDeletedTodos() {
     return this.props.todos.filter((todo:any) => !todo.deleted);
@@ -22,15 +18,6 @@ class Todos extends React.Component<any> {
     return this.onDeletedTodos.filter((todo:any) => todo.completed);
   }
 
-  getTodos = async () => {
-    try {
-      const response = await axios.get('todos');
-      const todos = response.data.resources.map((todo: any) => Object.assign({}, todo, {editing: false}));
-      this.props.initTodos(todos);
-    } catch (e) {
-      throw new Error(e);
-    }
-  };
 
   render() {
     return (
