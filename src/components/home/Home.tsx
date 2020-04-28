@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Button, Dropdown, Menu} from 'antd';
-import {UserOutlined,DownOutlined } from '@ant-design/icons';
+import {UserOutlined,DownOutlined,SmileOutlined } from '@ant-design/icons';
 import axios from '../../config/axios';
 import history from '../../config/history';
 import './Home.scss'
@@ -81,7 +81,9 @@ class Home extends React.Component<any, IIndexState> {
     return (
       <div className="Index" id="Index">
         <header>
-          <h2 className="logo"><strong >土豆烧牛肉</strong></h2>
+          <h2 className="logo">
+            <strong style={{margin:'4px',fontWeight:'bold'}}><SmileOutlined/></strong>
+            <strong>土豆烧牛肉</strong></h2>
           <Dropdown overlay={menu}>
             <Button className="userButton">
               <span><strong>欢迎 {this.state.user && this.state.user.account}</strong></span>

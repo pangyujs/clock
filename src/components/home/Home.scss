@@ -8,6 +8,9 @@
     align-items: center;
     border-bottom: 1px solid #ddd;
     .logo{
+      display: flex;
+      justify-content: center;
+      align-items: center;
       margin: 0;
     }
     .userButton{
@@ -19,7 +22,7 @@
   }
   >main{
     display: flex;
+
     justify-content: space-between;
-    align-items: flex-start;
   }
 }

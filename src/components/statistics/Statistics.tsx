@@ -31,7 +31,6 @@ class Statistics extends React.Component<SStatisticsProps> {
       <div className="Statistics" id="Statistics">
         <ul>
           <li>统计</li>
-          <li>目标</li>
           <li>番茄历史</li>
           <li>
             任务历史
