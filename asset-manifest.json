@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.48ea3bd3.chunk.css",
-    "main.js": "/static/js/main.edf8d9bb.chunk.js",
-    "main.js.map": "/static/js/main.edf8d9bb.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.e8899282.js",
-    "runtime-main.js.map": "/static/js/runtime-main.e8899282.js.map",
-    "static/css/2.a72c35d3.chunk.css": "/static/css/2.a72c35d3.chunk.css",
-    "static/js/2.8000c753.chunk.js": "/static/js/2.8000c753.chunk.js",
-    "static/js/2.8000c753.chunk.js.map": "/static/js/2.8000c753.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.01e593183595abfe982fdd8d25c72733.js": "/precache-manifest.01e593183595abfe982fdd8d25c72733.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.a72c35d3.chunk.css.map": "/static/css/2.a72c35d3.chunk.css.map",
-    "static/css/main.48ea3bd3.chunk.css.map": "/static/css/main.48ea3bd3.chunk.css.map",
-    "static/js/2.8000c753.chunk.js.LICENSE.txt": "/static/js/2.8000c753.chunk.js.LICENSE.txt"
+    "main.css": "/chaunceym/clock/static/css/main.48ea3bd3.chunk.css",
+    "main.js": "/chaunceym/clock/static/js/main.ae30f000.chunk.js",
+    "main.js.map": "/chaunceym/clock/static/js/main.ae30f000.chunk.js.map",
+    "runtime-main.js": "/chaunceym/clock/static/js/runtime-main.f5b85ab8.js",
+    "runtime-main.js.map": "/chaunceym/clock/static/js/runtime-main.f5b85ab8.js.map",
+    "static/css/2.a72c35d3.chunk.css": "/chaunceym/clock/static/css/2.a72c35d3.chunk.css",
+    "static/js/2.8000c753.chunk.js": "/chaunceym/clock/static/js/2.8000c753.chunk.js",
+    "static/js/2.8000c753.chunk.js.map": "/chaunceym/clock/static/js/2.8000c753.chunk.js.map",
+    "index.html": "/chaunceym/clock/index.html",
+    "precache-manifest.b6ec8d6cbdcea5e45eed93b4081c87fb.js": "/chaunceym/clock/precache-manifest.b6ec8d6cbdcea5e45eed93b4081c87fb.js",
+    "service-worker.js": "/chaunceym/clock/service-worker.js",
+    "static/css/2.a72c35d3.chunk.css.map": "/chaunceym/clock/static/css/2.a72c35d3.chunk.css.map",
+    "static/css/main.48ea3bd3.chunk.css.map": "/chaunceym/clock/static/css/main.48ea3bd3.chunk.css.map",
+    "static/js/2.8000c753.chunk.js.LICENSE.txt": "/chaunceym/clock/static/js/2.8000c753.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.e8899282.js",
+    "static/js/runtime-main.f5b85ab8.js",
     "static/css/2.a72c35d3.chunk.css",
     "static/js/2.8000c753.chunk.js",
     "static/css/main.48ea3bd3.chunk.css",
-    "static/js/main.edf8d9bb.chunk.js"
+    "static/js/main.ae30f000.chunk.js"
   ]
 }
