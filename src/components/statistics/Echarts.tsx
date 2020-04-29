@@ -67,8 +67,8 @@ class Echarts extends React.Component<SEchartsProps, SEchartsState> {
   getOption = () => {
     return {
       title: {
-        text: '土豆烧牛肉汇总',
-        subtext: '每月汇总'
+        text: '汇总统计',
+        subtext: `${new Date().getMonth()+1}月汇总`
       },
       tooltip: {
         trigger: 'axis'
@@ -156,7 +156,6 @@ class Echarts extends React.Component<SEchartsProps, SEchartsState> {
   }
 
   render() {
-    console.log(this.todoMonth);
     return (
       <div className="Echarts" id="Echarts">
         <ReactEcharts option={this.getOption()}/>

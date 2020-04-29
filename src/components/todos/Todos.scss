@@ -1,12 +1,19 @@
-#Todos{
+#Todos {
   padding: 16px;
-  margin: 16px;
+  margin: 16px 8px;
   border: 1px solid #dddddd;
   border-radius: 4px;
   width: calc(50% - 8px);
   background: #fff;
-  box-shadow: 0 2px 0 rgba(255,255,255,.2);
-  >.todoList{
+  box-shadow: 0 2px 0 rgba(255, 255, 255, .2);
+
+  > .todoList {
     margin-top: 16px;
   }
+}
+
+@media (max-width: 576px) {
+#Todos{
+  width: 95%;
+}
 }

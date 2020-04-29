@@ -22,7 +22,13 @@
   }
   >main{
     display: flex;
-
     justify-content: space-between;
+  }
+}
+@media (max-width:576px) {
+  #Index{
+    main{
+      display: block;
+    }
   }
 }

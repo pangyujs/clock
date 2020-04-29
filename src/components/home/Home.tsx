@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {Button, Dropdown, Menu} from 'antd';
-import {UserOutlined,DownOutlined,SmileOutlined } from '@ant-design/icons';
+import {Button, Dropdown, Menu, Row, Col} from 'antd';
+import {UserOutlined, DownOutlined, SmileOutlined} from '@ant-design/icons';
 import axios from '../../config/axios';
 import history from '../../config/history';
-import './Home.scss'
-import Todos from '../todos/Todos'
+import './Home.scss';
+import Todos from '../todos/Todos';
 import Tomatoes from '../Tomatoes/Tomatoes';
 import Statistics from '../statistics/Statistics';
 import {connect} from 'react-redux';
@@ -68,7 +68,7 @@ class Home extends React.Component<any, IIndexState> {
   async componentDidMount() {
     await this.getMe();
     await this.getTodos();
-    await this.getTomatoes()
+    await this.getTomatoes();
   }
 
   getMe = async () => {
@@ -82,12 +82,12 @@ class Home extends React.Component<any, IIndexState> {
       <div className="Index" id="Index">
         <header>
           <h2 className="logo">
-            <strong style={{margin:'4px',fontWeight:'bold'}}><SmileOutlined/></strong>
+            <strong style={{margin: '4px', fontWeight: 'bold'}}><SmileOutlined/></strong>
             <strong>土豆烧牛肉</strong></h2>
           <Dropdown overlay={menu}>
             <Button className="userButton">
               <span><strong>欢迎 {this.state.user && this.state.user.account}</strong></span>
-              <DownOutlined className="userIcon" />
+              <DownOutlined className="userIcon"/>
             </Button>
           </Dropdown>
         </header>
@@ -100,6 +100,7 @@ class Home extends React.Component<any, IIndexState> {
     );
   }
 }
+
 const mapStateToProps = (state: any, ownProps: any) => ({
   ...ownProps
 });

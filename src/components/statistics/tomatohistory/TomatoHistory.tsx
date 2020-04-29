@@ -44,6 +44,20 @@ class TomatoHistory extends React.Component<STodoHistoryProps> {
       Date.parse(b) - Date.parse(a));
   }
 
+  weekDays = (date: any) => {
+    const weekDay:any = {
+      'Monday': '周一',
+      'Tuesday': '周二',
+      'Wednesday': '周三',
+      'Thursday': '周四',
+      'Friday': '周五',
+      'Saturday': '周六',
+      'Sunday': '周日',
+    };
+    const englishWeek = format(parseISO(date), 'eeee');
+    return weekDay[`${englishWeek}`];
+  };
+
   render() {
     const finishedTomatoList = this.finishedDates.map(date => {
       return (
@@ -51,7 +65,7 @@ class TomatoHistory extends React.Component<STodoHistoryProps> {
           <div className="todosTitle">
             <p>
               <span className="date">{date}</span>
-              <span className="week">周五</span>
+              <span className="week">{this.weekDays(date)}</span>
             </p>
             <p className="mission">
               烧成了 {this.dailyFinishedTomatoes[date].length} 个牛肉
@@ -72,6 +86,7 @@ class TomatoHistory extends React.Component<STodoHistoryProps> {
           <div className="todosTitle">
             <p>
               <span className="date">{date}</span>
+              <span className="week">{this.weekDays(date)}</span>
             </p>
             <p className="mission">
               烧糊了 {this.dailyAbortedTomatoes[date].length} 个牛肉

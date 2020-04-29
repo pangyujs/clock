@@ -1,5 +1,5 @@
 #Statistics{
-  padding: 8px 16px;
+  padding: 8px 8px;
   .ulNode{
     display: flex;
     justify-content: center;
@@ -26,6 +26,23 @@
         position: absolute;
         top: 56px;
         left: 10px;
+      }
+    }
+  }
+}
+@media (max-width: 1200px) {
+  #Statistics{
+    #Ploygon{
+      display: none;
+    }
+    .echartsPloygon{
+      display: none;
+    }
+    .ulNode{
+      li{
+        h1{
+          margin: 0;
+        }
       }
     }
   }

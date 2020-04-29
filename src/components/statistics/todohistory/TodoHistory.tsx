@@ -6,6 +6,7 @@ import {format, parseISO} from 'date-fns';
 import {Tabs} from 'antd';
 import './TodoHistory.scss';
 import HistoryTodoItem from './HistoryTodoItem';
+
 const {TabPane} = Tabs;
 
 interface STodoHistoryProps {
@@ -33,6 +34,21 @@ class TodoHistory extends React.Component<STodoHistoryProps> {
     });
   }
 
+  weekDays = (date: any) => {
+    const weekDay:any = {
+      'Monday': '周一',
+      'Tuesday': '周二',
+      'Wednesday': '周三',
+      'Thursday': '周四',
+      'Friday': '周五',
+      'Saturday': '周六',
+      'Sunday': '周日',
+    };
+    const englishWeek = format(parseISO(date), 'eeee');
+    return weekDay[`${englishWeek}`];
+  };
+
+
   get finishedDates() {
     return Object.keys(this.dailyFinishedTodos).sort((a, b) =>
       Date.parse(b) - Date.parse(a));
@@ -50,7 +66,7 @@ class TodoHistory extends React.Component<STodoHistoryProps> {
           <div className="todosTitle">
             <p>
               <span className="date">{date}</span>
-              <span className="week">周五</span>
+              <span className="week">{ this.weekDays(date) }</span>
             </p>
             <p className="mission">
               炖成了 {this.dailyFinishedTodos[date].length} 个土豆
@@ -71,7 +87,7 @@ class TodoHistory extends React.Component<STodoHistoryProps> {
           <div className="todosTitle">
             <p>
               <span className="date">{date}</span>
-              <span className="week">周五</span>
+              <span className="week">{ this.weekDays(date) }</span>
             </p>
             <p className="mission">
               扔掉了 {this.dailyDeletedTodos[date].length} 个土豆
