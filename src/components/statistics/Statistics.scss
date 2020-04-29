@@ -3,11 +3,22 @@
   ul{
     display: flex;
     li{
+      &:hover{
+        background: #FAFAFA;
+      }
+      >h2{
+        margin: 0;
+      }
       flex: 1;
       padding: 8px;
       border: 1px solid #dddddd;
       border-radius: 4px;
-
+      position: relative;
+      #Ploygon{
+        position: absolute;
+        top: 56px;
+        left: 10px;
+      }
     }
   }
 }

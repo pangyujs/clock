@@ -29,7 +29,6 @@ class TodoHistory extends React.Component<STodoHistoryProps> {
 
   get dailyDeletedTodos() {
     return _.groupBy(this.deletedTodos, (todo: any) => {
-      console.log(todo);
       return format(parseISO(todo.updated_at), 'yyyy-MM-d');
     });
   }

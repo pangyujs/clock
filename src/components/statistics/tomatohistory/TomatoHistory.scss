@@ -1,0 +1,33 @@
+#TomatoHistory{
+  .dailyTodos{
+    display: flex;
+    border: 1px solid #dddddd;
+    padding: 16px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    .todosTitle{
+      min-width: 110px;
+      padding: 8px 8px 0 0;
+      .date{
+        color: #222222;
+        padding-right: 4px;
+      }
+      .week{
+        font-size: 12px;
+        color: #888;
+      }
+      .mission{
+        color: #888888;
+      }
+    }
+    .todosBody{
+      flex:1;
+      .oneTodo{
+        padding: 8px;
+        >span:first-child{
+          padding-right: 16px;
+        }
+      }
+    }
+  }
+}

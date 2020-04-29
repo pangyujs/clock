@@ -15,7 +15,6 @@ interface SHistoryTodoItemProps {
 class HistoryTodoItem extends React.Component<SHistoryTodoItemProps> {
   constructor(props: any) {
     super(props);
-    console.log(this.props);
   }
 
   updateTodo = async (updateData:any)=>{
