@@ -81,7 +81,7 @@ class TomatoAction extends React.Component<TTomatoActionProps, TTomatoActionStat
           <Input value={this.state.description}
                  onChange={(e) => this.setState({description: e.target.value})}
                  onKeyUp={this.onKeyUp}
-                 placeholder="请输入刚刚完成的任务"
+                 placeholder="请说出刚刚烧的牛肉味道怎么样"
           />
           <CloseCircleOutlined className="closeIcon" onClick={this.showConfirm}/>
         </div>;

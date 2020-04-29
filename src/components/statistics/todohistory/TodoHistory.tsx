@@ -53,7 +53,7 @@ class TodoHistory extends React.Component<STodoHistoryProps> {
               <span className="week">周五</span>
             </p>
             <p className="mission">
-              完成了 {this.dailyFinishedTodos[date].length} 个任务
+              炖成了 {this.dailyFinishedTodos[date].length} 个土豆
             </p>
           </div>
           <div className="todosBody">
@@ -74,7 +74,7 @@ class TodoHistory extends React.Component<STodoHistoryProps> {
               <span className="week">周五</span>
             </p>
             <p className="mission">
-              删除了 {this.dailyDeletedTodos[date].length} 个任务
+              扔掉了 {this.dailyDeletedTodos[date].length} 个土豆
             </p>
           </div>
           <div className="todosBody">

@@ -7,6 +7,7 @@ import TodoHistory from './todohistory/TodoHistory';
 import _ from 'lodash';
 import {format, parseISO} from 'date-fns';
 import TomatoHistory from './tomatohistory/TomatoHistory';
+import Echarts from './Echarts';
 
 
 interface SStatisticsProps {
@@ -14,7 +15,19 @@ interface SStatisticsProps {
   tomatoes: any[]
 }
 
-class Statistics extends React.Component<SStatisticsProps> {
+interface SStatisticsState {
+  visible: any
+}
+
+
+class Statistics extends React.Component<SStatisticsProps, SStatisticsState> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      visible: ''
+    };
+  }
+
 
   get finishedTomatoes() {
     return this.props.tomatoes.filter(tomato => tomato.description && !tomato.aborted);
@@ -36,40 +49,65 @@ class Statistics extends React.Component<SStatisticsProps> {
     });
   }
 
-  toTodoHistory = (description: string) => {
-    if (description === 'todos') {
-      return <TodoHistory/>;
+  toggleHistory = (history: string) => {
+    if (history === 'echarts') {
+      this.setState({visible: <Echarts/>});
+    } else if (history === 'tomatoes') {
+      this.setState({visible: <TomatoHistory/>});
+    } else if (history === 'todos') {
+      this.setState({visible: <TodoHistory/>});
     }
   };
 
   render() {
-    const TodoHistoryUser = this.toTodoHistory;
     return (
       <div className="Statistics" id="Statistics">
-        <ul>
-          <li>统计</li>
-          <li>
+        <ul className="ulNode">
+          <li onClick={() => this.toggleHistory('echarts')}>
             <h2>
-              番茄历史
+              统计
             </h2>
             <div>
-              <p style={{padding: '0', margin: '0'}}>累计完成番茄:</p>
+              <p style={{padding: '0', margin: '0'}}>{new Date().getMonth() + 1}月累积</p>
+              <h1>{this.finishedTomatoes.length + this.finishedTodos.length}</h1>
+            </div>
+            <div className="echartsPloygon">
+              <svg width="100%" height="60">
+                  <rect fill="rgba(215,78,78,0.5)" x="84.39999999999999" y="0" width="16" height="60"></rect>
+                  <rect fill="rgba(215,78,78,0.5)" x="115.2" y="50" width="16" height="20"></rect>
+                  <rect fill="rgba(215,78,78,0.5)" x="146" y="40.00000000000001" width="16"
+                        height="19.999999999999993"></rect>
+                  <rect fill="rgba(215,78,78,0.5)" x="176.79999999999998" y="59" width="16" height="1"></rect>
+                  <rect fill="rgba(215,78,78,0.5)" x="207.6" y="59" width="16" height="10"></rect>
+                  <rect fill="rgba(215,78,78,0.5)" x="238.4" y="59" width="16" height="1"></rect>
+                  <rect fill="rgba(215,78,78,0.5)" x="269.2" y="59" width="16" height="1"></rect>
+              </svg>
+            </div>
+          </li>
+          <li onClick={() => this.toggleHistory('tomatoes')}>
+            <h2>
+              牛肉历史
+            </h2>
+            <div>
+              <p style={{padding: '0', margin: '0'}}>累计烧成牛肉:</p>
               <h1>{this.finishedTomatoes.length}</h1>
             </div>
             <Ploygon data={this.dailyTomato} totalFinishedCount={this.finishedTomatoes.length}/>
           </li>
-          <li onClick={()=>this.toTodoHistory('todos')}>
+          <li onClick={() => this.toggleHistory('todos')}>
             <h2>
-              任务历史
+              土豆历史
             </h2>
             <div>
-              <p style={{padding: '0', margin: '0'}}>累计完成任务:</p>
+              <p style={{padding: '0', margin: '0'}}>累计炖成土豆:</p>
               <h1>{this.finishedTodos.length}</h1>
             </div>
             <Ploygon data={this.dailyTodo} totalFinishedCount={this.finishedTodos.length}/>
           </li>
         </ul>
-        <TomatoHistory/>
+        {
+          this.state.visible
+        }
       </div>
     );
   }

@@ -45,7 +45,6 @@ class TomatoHistory extends React.Component<STodoHistoryProps> {
   }
 
   render() {
-    console.log(this.dailyAbortedTomatoes)
     const finishedTomatoList = this.finishedDates.map(date => {
       return (
         <div key={date} className="dailyTodos">
@@ -55,13 +54,13 @@ class TomatoHistory extends React.Component<STodoHistoryProps> {
               <span className="week">周五</span>
             </p>
             <p className="mission">
-              完成了 {this.dailyFinishedTomatoes[date].length} 个番茄
+              烧成了 {this.dailyFinishedTomatoes[date].length} 个牛肉
             </p>
           </div>
           <div className="todosBody">
             {
-              this.dailyFinishedTomatoes[date].map((todo: any) =>
-                <HistoryTomatoItem itemType="finished" key={todo.id} todo={todo}/>)
+              this.dailyFinishedTomatoes[date].map((tomato: any) =>
+                <HistoryTomatoItem itemType="finished" key={tomato.id} tomato={tomato}/>)
             }
           </div>
         </div>
@@ -75,7 +74,7 @@ class TomatoHistory extends React.Component<STodoHistoryProps> {
               <span className="date">{date}</span>
             </p>
             <p className="mission">
-              中止了 {this.dailyAbortedTomatoes[date].length} 个番茄
+              烧糊了 {this.dailyAbortedTomatoes[date].length} 个牛肉
             </p>
           </div>
         </div>

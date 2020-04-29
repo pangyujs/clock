@@ -13,10 +13,6 @@ interface SHistoryTodoItemProps {
 }
 
 class HistoryTodoItem extends React.Component<SHistoryTodoItemProps> {
-  constructor(props: any) {
-    super(props);
-  }
-
   updateTodo = async (updateData:any)=>{
    try {
      const response = await axios.put(`todos/${this.props.todo.id}`,updateData)

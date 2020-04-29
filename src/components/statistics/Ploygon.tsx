@@ -6,10 +6,6 @@ interface SPloygonProps {
 }
 
 class Ploygon extends React.Component<SPloygonProps> {
-  constructor(props: any) {
-    super(props);
-  }
-
   point = () => {
     const dates = Object.keys(this.props.data).sort((a, b) => {
       return Date.parse(a) - Date.parse(b);

@@ -1,13 +1,21 @@
 #Statistics{
   padding: 8px 16px;
-  ul{
+  .ulNode{
     display: flex;
+    justify-content: center;
+    align-items: center;
     li{
+      margin: 0 4px;
       &:hover{
         background: #FAFAFA;
       }
       >h2{
         margin: 0;
+      }
+      .echartsPloygon{
+        position: absolute;
+        top: 56px;
+        left: 10px;
       }
       flex: 1;
       padding: 8px;
