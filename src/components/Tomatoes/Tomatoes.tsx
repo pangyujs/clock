@@ -7,7 +7,8 @@ import axios from '../../config/axios';
 import TomatoList from './TomatoList';
 // @ts-ignore
 import _ from 'lodash';
-import {format,parseISO} from 'date-fns';
+import {format, parseISO} from 'date-fns';
+import EmptySvg from '../emptysvg/EmptySvg';
 
 interface TTomatoes {
   addTomato: (payload: Object) => Object
@@ -24,7 +25,7 @@ class Tomatoes extends React.Component<TTomatoes> {
 
   get finishedTomato() {
     const finishTomatoes = this.props.tomatoes.filter(tomato => tomato.description && tomato.ended_at && !tomato.aborted);
-    const tomatoDate = _.groupBy(finishTomatoes, (tomato:any) => {
+    const tomatoDate = _.groupBy(finishTomatoes, (tomato: any) => {
         return format(parseISO(tomato.started_at), 'yyyy-MM-d');
       }
     );
@@ -40,6 +41,10 @@ class Tomatoes extends React.Component<TTomatoes> {
     }
   };
 
+  get onlineTomatoes(){
+    return this.props.tomatoes.filter(tomato=>!tomato.aborted)
+  }
+
   render() {
     return (
       <div className="Tomatoes" id="Tomatoes">
@@ -48,7 +53,12 @@ class Tomatoes extends React.Component<TTomatoes> {
                       unfinishedTomato={this.unfinishedTomato}
 
         />
-        <TomatoList finishedTomatoes={this.finishedTomato}/>
+        {
+          this.onlineTomatoes.length === 0 ?
+            <EmptySvg/>:
+            <TomatoList finishedTomatoes={this.finishedTomato}/>
+        }
+
       </div>
     );
   }

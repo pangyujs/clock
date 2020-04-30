@@ -69,8 +69,6 @@ class Statistics extends React.Component<SStatisticsProps, SStatisticsState> {
   };
 
   render() {
-    console.log(this.finishedTodos.length);
-    console.log(this.finishedTomatoes.length);
     return (
       <div className="Statistics" id="Statistics">
         <ul className="ulNode">
