@@ -1,7 +1,7 @@
 import axios from '../../config/axios';
 import * as React from 'react';
 import {Input, Button} from 'antd';
-import {UserOutlined, MoreOutlined } from '@ant-design/icons';
+import {UserOutlined, MoreOutlined} from '@ant-design/icons';
 import {Link} from 'react-router-dom';
 
 import './SignUp.scss';
@@ -43,7 +43,7 @@ class SignUp extends React.Component<any, ISignUpState> {
       });
       this.props.history.push('/');
     } catch (e) {
-      throw new Error(e);
+      console.log(e)
     }
   };
 

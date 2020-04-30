@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Button, Dropdown, Menu, Row, Col} from 'antd';
+import {Button, Dropdown, Menu} from 'antd';
 import {UserOutlined, DownOutlined, SmileOutlined} from '@ant-design/icons';
 import axios from '../../config/axios';
 import history from '../../config/history';

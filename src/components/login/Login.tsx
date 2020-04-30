@@ -36,7 +36,7 @@ class Login extends React.Component<any, ILoginState> {
       });
       this.props.history.push('/');
     } catch (e) {
-      throw new Error(e);
+      console.log(e)
     }
   };
 
