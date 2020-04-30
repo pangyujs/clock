@@ -53,11 +53,15 @@ class Echarts extends React.Component<SEchartsProps, SEchartsState> {
   }
 
   get todoMonth() {
-    return format(parseISO(this.finishedTodos[0].completed_at), 'M');
+    if(this.finishedTodos[0]){
+      return format(parseISO(this.finishedTodos[0].completed_at), 'M');
+    }
   }
 
   get tomatoMonth() {
-    return format(parseISO(this.finishedTomatoes[0].ended_at), 'M');
+    if(this.finishedTomatoes[0]){
+      return format(parseISO(this.finishedTomatoes[0].ended_at), 'M');
+    }
   }
 
   get tomatoDate() {

@@ -8,6 +8,7 @@ import _ from 'lodash';
 import {format, parseISO} from 'date-fns';
 import TomatoHistory from './tomatohistory/TomatoHistory';
 import Echarts from './Echarts';
+import {message} from 'antd';
 
 
 interface SStatisticsProps {
@@ -53,13 +54,23 @@ class Statistics extends React.Component<SStatisticsProps, SStatisticsState> {
     if (history === 'echarts') {
       this.setState({visible: <Echarts/>});
     } else if (history === 'tomatoes') {
-      this.setState({visible: <TomatoHistory/>});
+      if(this.finishedTomatoes.length === 0){
+        message.warning('还没有完成的牛肉')
+      }else{
+        this.setState({visible: <TomatoHistory/>});
+      }
     } else if (history === 'todos') {
-      this.setState({visible: <TodoHistory/>});
+      if(this.finishedTodos.length === 0){
+        message.warning('还没有完成的土豆')
+      }else{
+        this.setState({visible: <TodoHistory/>});
+      }
     }
   };
 
   render() {
+    console.log(this.finishedTodos.length);
+    console.log(this.finishedTomatoes.length);
     return (
       <div className="Statistics" id="Statistics">
         <ul className="ulNode">
