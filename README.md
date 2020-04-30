@@ -12,4 +12,4 @@
 
 ## 本项目的一些心得体会
 
-- [土豆炖牛肉项目笔记]()
+- [土豆炖牛肉项目笔记](https://chaunceym.gitee.io/notes/pages/project-notes/clock/clock-index.html)
