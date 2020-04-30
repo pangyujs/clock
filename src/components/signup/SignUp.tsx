@@ -1,6 +1,6 @@
 import axios from '../../config/axios';
 import * as React from 'react';
-import {Input, Button} from 'antd';
+import {Input, Button, message} from 'antd';
 import {UserOutlined, MoreOutlined} from '@ant-design/icons';
 import {Link} from 'react-router-dom';
 
@@ -34,6 +34,13 @@ class SignUp extends React.Component<any, ISignUpState> {
     this.setState({passwordConfirmation: e.target.value});
   };
   submit = async () => {
+    if (this.state.account === '') {
+      return message.warning('请输入用户名');
+    } else if (this.state.password === '') {
+      return message.warning('请输入密码');
+    }else if(this.state.passwordConfirmation === ''){
+      return message.warning('请确认密码');
+    }
     const {account, password, passwordConfirmation} = this.state;
     try {
       await axios.post('sign_up/user', {
