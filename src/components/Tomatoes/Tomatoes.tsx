@@ -26,7 +26,7 @@ class Tomatoes extends React.Component<TTomatoes> {
   get finishedTomato() {
     const finishTomatoes = this.props.tomatoes.filter(tomato => tomato.description && tomato.ended_at && !tomato.aborted);
     const tomatoDate = _.groupBy(finishTomatoes, (tomato: any) => {
-        return format(parseISO(tomato.started_at), 'yyyy-MM-d');
+        return format(parseISO(tomato.started_at), 'yyyy-MM-dd');
       }
     );
     return tomatoDate;
@@ -53,12 +53,13 @@ class Tomatoes extends React.Component<TTomatoes> {
                       unfinishedTomato={this.unfinishedTomato}
 
         />
-        {
-          this.onlineTomatoes.length === 0 ?
-            <EmptySvg/>:
-            <TomatoList finishedTomatoes={this.finishedTomato}/>
-        }
-
+        <div className="tomatoList">
+          {
+            this.onlineTomatoes.length === 0 ?
+              <EmptySvg/>:
+              <TomatoList finishedTomatoes={this.finishedTomato}/>
+          }
+        </div>
       </div>
     );
   }
