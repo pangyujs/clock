@@ -1,10 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import store from './redux/store'
+import store from './redux/store';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+
+const upSvg: any = document.querySelector('.upSvg');
+document.onscroll = (() => {
+  console.log(window.scrollY);
+  if (window.scrollY >= 1000) {
+    upSvg.classList.add('visible');
+    upSvg.onclick = () => {
+      window.scrollTo(0, -1);
+    };
+  } else {
+    upSvg.classList.remove('visible');
+  }
+});
 
 ReactDOM.render(
   <Provider store={store}>

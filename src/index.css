@@ -8,7 +8,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: #FDFDFD;
 }
-
+.upSvg{
+  border: 16px solid #ddd;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  position: fixed;
+  bottom: 48px;
+  right: 6%;
+  cursor: pointer;
+  display: none;
+}
+.upSvg.visible{
+  display: block;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

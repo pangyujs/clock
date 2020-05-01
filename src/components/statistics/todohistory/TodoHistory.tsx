@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 // @ts-ignore
 import _ from 'lodash';
 import {format, parseISO} from 'date-fns';
-import {Tabs} from 'antd';
+import {Pagination, Tabs} from 'antd';
 import './TodoHistory.scss';
 import HistoryTodoItem from './HistoryTodoItem';
 

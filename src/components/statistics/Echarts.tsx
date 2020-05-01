@@ -176,7 +176,6 @@ class Echarts extends React.Component<SEchartsProps, SEchartsState> {
   }
 
   render() {
-    console.log(this.dailyFinishedTomatoes);
     return (
       <div className="Echarts" id="Echarts">
         <ReactEcharts notMerge={true}  option={this.getOption()}/>

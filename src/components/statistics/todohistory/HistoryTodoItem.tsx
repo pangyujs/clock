@@ -4,7 +4,6 @@ import './HistoryTodoItem.scss';
 import {connect} from 'react-redux';
 import {updateTodo} from '../../../redux/actions/todos';
 import axios from '../../../config/axios';
-import {Pagination} from 'antd';
 
 interface SHistoryTodoItemProps {
   todo: any
