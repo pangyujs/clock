@@ -35,11 +35,11 @@ class SignUp extends React.Component<any, ISignUpState> {
   };
   submit = async () => {
     if (this.state.account === '') {
-      return message.warning('请输入用户名');
+      return message.warning('请输入用户名',1);
     } else if (this.state.password === '') {
-      return message.warning('请输入密码');
+      return message.warning('请输入密码',1);
     }else if(this.state.passwordConfirmation === ''){
-      return message.warning('请确认密码');
+      return message.warning('请确认密码',1);
     }
     const {account, password, passwordConfirmation} = this.state;
     try {

@@ -95,7 +95,6 @@ class Echarts extends React.Component<SEchartsProps, SEchartsState> {
         feature: {
           magicType: {show: true, type: ['line', 'bar']},
           restore: {show: true},
-          saveAsImage: {show: true}
         }
       },
       calculable: true,

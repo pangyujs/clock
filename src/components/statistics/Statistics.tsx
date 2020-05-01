@@ -55,13 +55,13 @@ class Statistics extends React.Component<SStatisticsProps, SStatisticsState> {
       this.setState({visible: <Echarts/>});
     } else if (history === 'tomatoes') {
       if(this.finishedTomatoes.length === 0){
-        message.warning('还没有完成的牛肉')
+        message.warning('还没有完成的牛肉',1)
       }else{
         this.setState({visible: <TomatoHistory/>});
       }
     } else if (history === 'todos') {
       if(this.finishedTodos.length === 0){
-        message.warning('还没有完成的土豆')
+        message.warning('还没有完成的土豆',1)
       }else{
         this.setState({visible: <TodoHistory/>});
       }

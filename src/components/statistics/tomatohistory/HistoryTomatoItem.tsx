@@ -2,7 +2,7 @@ import * as React from 'react';
 import {format, parseISO} from 'date-fns';
 import './HistoryTomatoItem.scss';
 import {connect} from 'react-redux';
-import {Modal,Input} from 'antd';
+import {Modal, Input, message} from 'antd';
 import axios from '../../../config/axios';
 import {updateTomato} from '../../../redux/actions/tomatoes';
 
@@ -15,7 +15,7 @@ interface SHistoryTodoItemProps {
 
 interface SHistoryTodoItemState {
   visible: boolean
-  description:string
+  description: string
 }
 
 class HistoryTomatoItem extends React.Component<SHistoryTodoItemProps, SHistoryTodoItemState> {
@@ -36,7 +36,9 @@ class HistoryTomatoItem extends React.Component<SHistoryTodoItemProps, SHistoryT
     }
   };
   onKeyUp = (e: any) => {
-    if (e.keyCode === 13 && this.state.description !== '') {
+    if (this.state.description === '') {
+      message.warning('您还没有输入修改的内容',1);
+    } else if (e.keyCode === 13) {
       this.updateTomato({description: this.state.description});
       this.setState({
         visible: false
@@ -90,9 +92,9 @@ class HistoryTomatoItem extends React.Component<SHistoryTodoItemProps, SHistoryT
         >
           <Input placeholder="请输入修改的值"
                  value={this.state.description}
-                 onChange={(e)=>this.setState({description:e.target.value})}
+                 onChange={(e) => this.setState({description: e.target.value})}
                  onKeyUp={this.onKeyUp}
-                 />
+          />
         </Modal>
       </div>
     );

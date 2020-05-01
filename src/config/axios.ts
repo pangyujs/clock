@@ -37,9 +37,9 @@ instance.interceptors.response.use(function (response) {
   if (error.response.status === 401) {
     history.push('/login');
   } else if (error.response.status === 422 && error.response.data.errors === '账号或密码错误') {
-    message.error(error.response.data.errors);
+    message.error(error.response.data.errors,1);
   } else if (error.response.status === 422 && error.response.data.errors.account[0] === 'has already been taken') {
-    message.error('用户名已存在');
+    message.error('用户名已存在',1);
   }
   return Promise.reject(error);
 });

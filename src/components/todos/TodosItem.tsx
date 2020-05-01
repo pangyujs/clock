@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Checkbox} from 'antd';
+import {Checkbox, message} from 'antd';
 import {DeleteOutlined, CheckOutlined} from '@ant-design/icons';
 import './TodosItem.scss';
 import {connect} from 'react-redux';
@@ -47,13 +47,17 @@ class TodosItem extends React.Component<TTodosItemProps, TTodosItemState> {
   };
 
   onKeyup = (e: any) => {
-    if (e.keyCode === 13 && this.state.editText !== '') {
+    if (this.state.editText === '') {
+      message.warning('您还没有输入内容', 1);
+    } else if (e.keyCode === 13) {
       this.updateTodo({description: this.state.editText});
     }
   };
 
   onClick = () => {
-    if (this.state.editText !== '') {
+    if (this.state.editText === '') {
+      message.warning('您还没有输入内容', 1);
+    } else {
       this.updateTodo({description: this.state.editText});
     }
   };
@@ -72,7 +76,7 @@ class TodosItem extends React.Component<TTodosItemProps, TTodosItemState> {
       </div>
     );
 
-    const Text = <span className="text" onDoubleClick={this.toEditing}>{this.props.description}</span>;
+    const Text = <span className="text" onClick={this.toEditing}>{this.props.description}</span>;
     const todoItemClass = classNames({
       TodosItem: true,
       editing: this.props.editing,
