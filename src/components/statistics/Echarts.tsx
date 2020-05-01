@@ -32,8 +32,13 @@ class Echarts extends React.Component<SEchartsProps, SEchartsState> {
   }
 
   get dailyFinishedTodos() {
-    return _.groupBy(this.finishedTodos, (todo: any) => {
-      return format(parseISO(todo.completed_at), 'd');
+    return _.groupBy(this.finishedTodos, (tomato: any) => {
+      const month = format(parseISO(tomato.completed_at), 'M');
+      if (month === (new Date().getMonth() + 1).toString()) {
+        return format(parseISO(tomato.completed_at), 'd');
+      } else {
+        return;
+      }
     });
   }
 
@@ -47,21 +52,24 @@ class Echarts extends React.Component<SEchartsProps, SEchartsState> {
 
 
   get dailyFinishedTomatoes() {
-    const dd = _.groupBy(this.finishedTomatoes, (tomato: any) => {
-      return format(parseISO(tomato.ended_at), 'd');
+    return _.groupBy(this.finishedTomatoes, (tomato: any) => {
+      const month = format(parseISO(tomato.ended_at), 'M');
+      if (month === (new Date().getMonth() + 1).toString()) {
+        return format(parseISO(tomato.ended_at), 'd');
+      } else {
+        return;
+      }
     });
-    console.log(dd)
-    return dd
   }
 
   get todoMonth() {
-    if(this.finishedTodos[0]){
+    if (this.finishedTodos[0]) {
       return format(parseISO(this.finishedTodos[0].completed_at), 'M');
     }
   }
 
   get tomatoMonth() {
-    if(this.finishedTomatoes[0]){
+    if (this.finishedTomatoes[0]) {
       return format(parseISO(this.finishedTomatoes[0].ended_at), 'M');
     }
   }
@@ -74,7 +82,7 @@ class Echarts extends React.Component<SEchartsProps, SEchartsState> {
     return {
       title: {
         text: '汇总统计',
-        subtext: `${new Date().getMonth()+1}月汇总`
+        subtext: `${new Date().getMonth() + 1}月汇总`
       },
       tooltip: {
         trigger: 'axis'
@@ -147,11 +155,17 @@ class Echarts extends React.Component<SEchartsProps, SEchartsState> {
 
     if (this.todoMonth && this.todoMonth === nowMonth.toString()) {
       this.todoDate.forEach((date: any) => {
+        if (date === undefined) {
+          return;
+        }
         todosData[date - 1] = this.dailyFinishedTodos[date].length;
       });
     }
     if (this.tomatoMonth && this.tomatoMonth === nowMonth.toString()) {
       this.tomatoDate.forEach((date: any) => {
+        if (date === undefined) {
+          return;
+        }
         tomatoesData[date - 1] = this.dailyFinishedTomatoes[date].length;
       });
     }
@@ -162,9 +176,10 @@ class Echarts extends React.Component<SEchartsProps, SEchartsState> {
   }
 
   render() {
+    console.log(this.dailyFinishedTomatoes);
     return (
       <div className="Echarts" id="Echarts">
-        <ReactEcharts option={this.getOption()}/>
+        <ReactEcharts notMerge={true}  option={this.getOption()}/>
       </div>
     );
   }
