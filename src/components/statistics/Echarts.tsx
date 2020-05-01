@@ -47,9 +47,11 @@ class Echarts extends React.Component<SEchartsProps, SEchartsState> {
 
 
   get dailyFinishedTomatoes() {
-    return _.groupBy(this.finishedTomatoes, (tomato: any) => {
+    const dd = _.groupBy(this.finishedTomatoes, (tomato: any) => {
       return format(parseISO(tomato.ended_at), 'd');
     });
+    console.log(dd)
+    return dd
   }
 
   get todoMonth() {
@@ -143,12 +145,12 @@ class Echarts extends React.Component<SEchartsProps, SEchartsState> {
       this.setState({days: [...baseDays]});
     }
 
-    if (this.todoMonth === nowMonth.toString()) {
+    if (this.todoMonth && this.todoMonth === nowMonth.toString()) {
       this.todoDate.forEach((date: any) => {
         todosData[date - 1] = this.dailyFinishedTodos[date].length;
       });
     }
-    if (this.tomatoMonth === nowMonth.toString()) {
+    if (this.tomatoMonth && this.tomatoMonth === nowMonth.toString()) {
       this.tomatoDate.forEach((date: any) => {
         tomatoesData[date - 1] = this.dailyFinishedTomatoes[date].length;
       });

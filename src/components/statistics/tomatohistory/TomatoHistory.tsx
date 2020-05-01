@@ -20,7 +20,7 @@ class TomatoHistory extends React.Component<STodoHistoryProps> {
 
   get dailyFinishedTomatoes() {
     return _.groupBy(this.finishedTomatoes, (tomato: any) => {
-      return format(parseISO(tomato.ended_at), 'yyyy-MM-d');
+      return format(parseISO(tomato.ended_at), 'yyyy-MM-dd');
     });
   }
 
@@ -35,7 +35,7 @@ class TomatoHistory extends React.Component<STodoHistoryProps> {
 
   get dailyAbortedTomatoes() {
     return _.groupBy(this.abortedTomatoes, (tomato: any) => {
-      return format(parseISO(tomato.created_at), 'yyyy-MM-d');
+      return format(parseISO(tomato.created_at), 'yyyy-MM-dd');
     });
   }
 

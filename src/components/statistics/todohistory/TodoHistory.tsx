@@ -24,18 +24,18 @@ class TodoHistory extends React.Component<STodoHistoryProps> {
 
   get dailyFinishedTodos() {
     return _.groupBy(this.finishedTodos, (todo: any) => {
-      return format(parseISO(todo.completed_at), 'yyyy-MM-d');
+      return format(parseISO(todo.completed_at), 'yyyy-MM-dd');
     });
   }
 
   get dailyDeletedTodos() {
     return _.groupBy(this.deletedTodos, (todo: any) => {
-      return format(parseISO(todo.updated_at), 'yyyy-MM-d');
+      return format(parseISO(todo.updated_at), 'yyyy-MM-dd');
     });
   }
 
   weekDays = (date: any) => {
-    const weekDay:any = {
+    const weekDay: any = {
       'Monday': '周一',
       'Tuesday': '周二',
       'Wednesday': '周三',
@@ -66,7 +66,7 @@ class TodoHistory extends React.Component<STodoHistoryProps> {
           <div className="todosTitle">
             <p>
               <span className="date">{date}</span>
-              <span className="week">{ this.weekDays(date) }</span>
+              <span className="week">{this.weekDays(date)}</span>
             </p>
             <p className="mission">
               炖成了 {this.dailyFinishedTodos[date].length} 个土豆
@@ -87,7 +87,7 @@ class TodoHistory extends React.Component<STodoHistoryProps> {
           <div className="todosTitle">
             <p>
               <span className="date">{date}</span>
-              <span className="week">{ this.weekDays(date) }</span>
+              <span className="week">{this.weekDays(date)}</span>
             </p>
             <p className="mission">
               扔掉了 {this.dailyDeletedTodos[date].length} 个土豆
