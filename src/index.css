@@ -18,9 +18,21 @@ body {
   right: 6%;
   cursor: pointer;
   display: none;
+  opacity: .7;
 }
 .upSvg.visible{
   display: block;
+}
+
+@media (max-width:578px){
+  .upSvg{
+    border: 12px solid #dddddd;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    right: 8px;
+    opacity: .7;
+  }
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
