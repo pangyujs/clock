@@ -81,7 +81,6 @@ class Statistics extends React.Component<SStatisticsProps, SStatisticsState> {
   };
 
   render() {
-    console.log(this.echartData);
     return (
       <div className="Statistics" id="Statistics">
         <ul className="ulNode">
