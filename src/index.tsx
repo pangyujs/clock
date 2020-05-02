@@ -9,7 +9,6 @@ import * as serviceWorker from './serviceWorker';
 
 const upSvg: any = document.querySelector('.upSvg');
 document.onscroll = (() => {
-  console.log(window.scrollY);
   if (window.scrollY >= 1000) {
     upSvg.classList.add('visible');
     upSvg.onclick = () => {

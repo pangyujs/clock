@@ -63,15 +63,19 @@ class Echarts extends React.Component<SEchartsProps, SEchartsState> {
   }
 
   get todoMonth() {
-    if (this.finishedTodos[0]) {
-      return format(parseISO(this.finishedTodos[0].completed_at), 'M');
-    }
+    const sortTodoDate = _.groupBy(this.finishedTodos, (tomato: any) => {
+      return format(parseISO(tomato.completed_at), 'M');
+    });
+    const monthArray = Object.keys(sortTodoDate);
+    return monthArray && monthArray[monthArray.length - 1];
   }
 
   get tomatoMonth() {
-    if (this.finishedTomatoes[0]) {
-      return format(parseISO(this.finishedTomatoes[0].ended_at), 'M');
-    }
+    const sortTomatoDate = _.groupBy(this.finishedTomatoes, (tomato: any) => {
+      return format(parseISO(tomato.ended_at), 'M');
+    });
+    const monthArray = Object.keys(sortTomatoDate);
+    return monthArray && monthArray[monthArray.length - 1];
   }
 
   get tomatoDate() {
@@ -177,7 +181,7 @@ class Echarts extends React.Component<SEchartsProps, SEchartsState> {
   render() {
     return (
       <div className="Echarts" id="Echarts">
-        <ReactEcharts notMerge={true}  option={this.getOption()}/>
+        <ReactEcharts notMerge={true} option={this.getOption()}/>
       </div>
     );
   }

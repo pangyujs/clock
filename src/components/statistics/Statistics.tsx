@@ -10,7 +10,6 @@ import TomatoHistory from './tomatohistory/TomatoHistory';
 import Echarts from './Echarts';
 import {message} from 'antd';
 
-
 interface SStatisticsProps {
   todos: any[]
   tomatoes: any[]
@@ -44,6 +43,19 @@ class Statistics extends React.Component<SStatisticsProps, SStatisticsState> {
     return this.props.todos.filter(todo => todo.completed && !todo.deleted);
   }
 
+  get echartData() {
+    const tomatoMonth = _.groupBy(this.finishedTomatoes, (tomato: any) => {
+      return format(parseISO(tomato.ended_at), 'M');
+    });
+    const todoMonth = _.groupBy(this.finishedTodos, (todo: any) => {
+      return format(parseISO(todo.completed_at), 'M');
+    });
+    const nowMonth = new Date().getMonth() + 1;
+    const tomatoLength = tomatoMonth[nowMonth] ? tomatoMonth[nowMonth].length : 0;
+    const todoLength = todoMonth[nowMonth] ? todoMonth[nowMonth].length : 0;
+    return tomatoLength + todoLength;
+  }
+
   get dailyTodo() {
     return _.groupBy(this.finishedTodos, (todo: any) => {
       return format(parseISO(todo.completed_at), 'yyyy-MM-d');
@@ -54,21 +66,22 @@ class Statistics extends React.Component<SStatisticsProps, SStatisticsState> {
     if (history === 'echarts') {
       this.setState({visible: <Echarts/>});
     } else if (history === 'tomatoes') {
-      if(this.finishedTomatoes.length === 0){
-        message.warning('还没有完成的牛肉',1)
-      }else{
+      if (this.finishedTomatoes.length === 0) {
+        message.warning('还没有完成的牛肉', 1);
+      } else {
         this.setState({visible: <TomatoHistory/>});
       }
     } else if (history === 'todos') {
-      if(this.finishedTodos.length === 0){
-        message.warning('还没有完成的土豆',1)
-      }else{
+      if (this.finishedTodos.length === 0) {
+        message.warning('还没有完成的土豆', 1);
+      } else {
         this.setState({visible: <TodoHistory/>});
       }
     }
   };
 
   render() {
+    console.log(this.echartData);
     return (
       <div className="Statistics" id="Statistics">
         <ul className="ulNode">
@@ -78,18 +91,18 @@ class Statistics extends React.Component<SStatisticsProps, SStatisticsState> {
             </h2>
             <div>
               <p style={{padding: '0', margin: '0'}}>{new Date().getMonth() + 1}月累积</p>
-              <h1>{this.finishedTomatoes.length + this.finishedTodos.length}</h1>
+              <h1>{this.echartData}</h1>
             </div>
             <div className="echartsPloygon">
               <svg width="100%" height="60">
-                  <rect fill="rgba(215,78,78,0.5)" x="84.39999999999999" y="0" width="16" height="60"></rect>
-                  <rect fill="rgba(215,78,78,0.5)" x="115.2" y="50" width="16" height="20"></rect>
-                  <rect fill="rgba(215,78,78,0.5)" x="146" y="40.00000000000001" width="16"
-                        height="19.999999999999993"></rect>
-                  <rect fill="rgba(215,78,78,0.5)" x="176.79999999999998" y="59" width="16" height="1"></rect>
-                  <rect fill="rgba(215,78,78,0.5)" x="207.6" y="59" width="16" height="10"></rect>
-                  <rect fill="rgba(215,78,78,0.5)" x="238.4" y="59" width="16" height="1"></rect>
-                  <rect fill="rgba(215,78,78,0.5)" x="269.2" y="59" width="16" height="1"></rect>
+                <rect fill="rgba(215,78,78,0.5)" x="84.39999999999999" y="0" width="16" height="60"></rect>
+                <rect fill="rgba(215,78,78,0.5)" x="115.2" y="50" width="16" height="20"></rect>
+                <rect fill="rgba(215,78,78,0.5)" x="146" y="40.00000000000001" width="16"
+                      height="19.999999999999993"></rect>
+                <rect fill="rgba(215,78,78,0.5)" x="176.79999999999998" y="59" width="16" height="1"></rect>
+                <rect fill="rgba(215,78,78,0.5)" x="207.6" y="59" width="16" height="10"></rect>
+                <rect fill="rgba(215,78,78,0.5)" x="238.4" y="59" width="16" height="1"></rect>
+                <rect fill="rgba(215,78,78,0.5)" x="269.2" y="59" width="16" height="1"></rect>
               </svg>
             </div>
           </li>
